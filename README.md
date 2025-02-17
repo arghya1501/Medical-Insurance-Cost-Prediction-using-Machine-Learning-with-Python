@@ -180,6 +180,96 @@ insurance_dataset.isnull().sum()
 insurance_dataset.describe()
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>bmi</th>
+      <th>children</th>
+      <th>charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1338.000000</td>
+      <td>1338.000000</td>
+      <td>1338.000000</td>
+      <td>1338.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>39.207025</td>
+      <td>30.663397</td>
+      <td>1.094918</td>
+      <td>13270.422265</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>14.049960</td>
+      <td>6.098187</td>
+      <td>1.205493</td>
+      <td>12110.011237</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>18.000000</td>
+      <td>15.960000</td>
+      <td>0.000000</td>
+      <td>1121.873900</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>27.000000</td>
+      <td>26.296250</td>
+      <td>0.000000</td>
+      <td>4740.287150</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>39.000000</td>
+      <td>30.400000</td>
+      <td>1.000000</td>
+      <td>9382.033000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>51.000000</td>
+      <td>34.693750</td>
+      <td>2.000000</td>
+      <td>16639.912515</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>64.000000</td>
+      <td>53.130000</td>
+      <td>5.000000</td>
+      <td>63770.428010</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 #distribution of age values
 
 
@@ -233,19 +323,14 @@ insurance_dataset['sex'].value_counts()
 
 ```python
 plt.figure(figsize=(6,6))
-sns.distplot(insurance_dataset['bmi'])
+sns.histplot(insurance_dataset['bmi'],kde=True)
 plt.title('BMI DISTRIBUTION')
 plt.show()
 ```
 
-    
-    
-      sns.distplot(insurance_dataset['bmi'])
-    
-
 
     
-![png](output_18_1.png)
+![png](output_18_0.png)
     
 
 
@@ -355,17 +440,14 @@ insurance_dataset['region'].value_counts()
 
 ```python
 plt.figure(figsize=(6,6))
-sns.distplot(insurance_dataset['charges'])
+sns.histplot(insurance_dataset['charges'], kde=True)
 plt.title('CHARGES DISTRIBUTION')
 plt.show()
 ```
 
-    
-    
-
 
     
-![png](output_30_1.png)
+![png](output_30_0.png)
     
 
 
@@ -398,18 +480,18 @@ y = insurance_dataset['charges']
 print(x)
 ```
 
-          age  sex     bmi  children  smoker region
-    0      19    1  27.900         0       0      1
-    1      18    0  33.770         1       1      0
-    2      28    0  33.000         3       1      0
-    3      33    0  22.705         0       1      3
-    4      32    0  28.880         0       1      3
-    ...   ...  ...     ...       ...     ...    ...
-    1333   50    0  30.970         3       1      3
-    1334   18    1  31.920         0       1      2
-    1335   18    1  36.850         0       1      0
-    1336   21    1  25.800         0       1      1
-    1337   61    1  29.070         0       0      3
+          age sex     bmi  children smoker region
+    0      19   1  27.900         0      0      1
+    1      18   0  33.770         1      1      0
+    2      28   0  33.000         3      1      0
+    3      33   0  22.705         0      1      3
+    4      32   0  28.880         0      1      3
+    ...   ...  ..     ...       ...    ...    ...
+    1333   50   0  30.970         3      1      3
+    1334   18   1  31.920         0      1      2
+    1335   18   1  36.850         0      1      0
+    1336   21   1  25.800         0      1      1
+    1337   61   1  29.070         0      0      3
     
     [1338 rows x 6 columns]
     
@@ -463,12 +545,6 @@ regressor = LinearRegression()
 regressor.fit(x_train, y_train)
 ```
 
-
-
-
-
-
-
 #MODEL EVALUATION
 
 
@@ -516,8 +592,3 @@ print('The Insurance cost is USD',predicition[0])
     C:\Users\DELL\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\validation.py:2739: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
       warnings.warn(
     
-
-
-```python
-
-```
